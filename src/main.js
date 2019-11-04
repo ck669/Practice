@@ -18,7 +18,9 @@ import {
   FormItem,
   Message,
   Step,
-  Steps
+  Steps,
+  Carousel,
+  CarouselItem
 
 } from 'element-ui';
 
@@ -35,6 +37,8 @@ Vue.use(Input);
 Vue.use(FormItem);
 Vue.use(Step);
 Vue.use(Steps);
+Vue.use(Carousel);
+Vue.use(CarouselItem);
 
 Vue.prototype.$message = Message;
 

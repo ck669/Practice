@@ -3,12 +3,12 @@
     <div class="logo" @click="toHome">
       <img src="../../assets/images/logo.png" alt />
     </div>
-    <ul class="nav-bar">
-      <li>新闻</li>
-      <li>活动</li>
-      <li>关于</li>
+    <ul class="nav-list">
+      <li v-for="item in navList" :key="item.id">
+        <router-link :to="{name:item.name}">{{item.title}}</router-link>
+      </li>
     </ul>
-    <div>
+    <div class="header-right">
       <el-button type="primary" @click="toLogin" v-if="isLogin == false">登录</el-button>
       <span v-else>{{isUserName}}</span>
       <el-button type="primary" @click="loginOut" v-if="isLogin == true">退出</el-button>
@@ -17,10 +17,14 @@
 </template>
 
 <script>
+import navList from "@/forData/navList";
 import Cookies from "js-cookie";
+
 export default {
   data() {
-    return {};
+    return {
+      navList
+    };
   },
   created() {
     this.$store.state.userLogin =
@@ -54,20 +58,32 @@ export default {
 <style lang="scss">
 #header {
   height: 60px;
-  display: flex;
-  justify-content: space-around;
+  width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  overflow: hidden;
   .logo {
     width: 60px;
+    height: 100%;
+    float: left;
+    margin-right: 30px;
     img {
       height: 100%;
     }
   }
-  .nav-bar {
+  .nav-list {
+    height: 100%;
     display: flex;
     justify-content: space-between;
+    float: left;
     li {
       padding: 10px;
+      font-size: 18px;
     }
+  }
+  .header-right {
+    height: 100%;
+    float: right;
   }
 }
 </style>

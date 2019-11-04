@@ -1,12 +1,11 @@
 <template>
   <div id="home">
-    <h1>我是首页</h1>
-    <div>{{myNum}}</div>
-    <div class="link-box">
-      <div v-for="(item, index) in linkData" :key="index" class="link-item">
-        <router-link :to="{name:item.name}">{{item.title}}</router-link>
-      </div>
-    </div>
+    <h1>我是首页：{{myNum}}</h1>
+    <el-carousel height="300px">
+      <el-carousel-item v-for="item in imgList" :key="item" >
+        <img :src="item.src" :alt="item.title">
+      </el-carousel-item>
+    </el-carousel>
   </div>
 </template>
 
@@ -17,8 +16,21 @@ export default {
   name: "HelloWorld",
   data() {
     return {
+      imgList:[
+        {
+          title:'login',
+          src: require('@/assets/images/login.jpg')
+        },
+        {
+          title:'lol',
+          src: require('@/assets/images/lol.jpg')
+        },
+        {
+          title:'ship',
+          src: require('@/assets/images/ship.png')
+        }
+      ],
       myNum: toNum,
-      linkData
     };
   }
 };
@@ -43,12 +55,14 @@ a {
   color: #42b983;
 }
 #home {
-  .link-box {
-    width: 500px;
-    display: flex;
-    word-wrap: wrap;
-    .link-item{
-      padding: 10px;
+  width: 1200px;
+  margin: 0 auto;
+  .el-carousel__container{
+    .el-carousel__item{
+      img{
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
