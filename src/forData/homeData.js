@@ -12,7 +12,7 @@ export default [
         name:'choice'
     },
     {
-        title:'个人中心',
-        // name:'apply'
+        title:'图表模块',
+        name:'chart'
     },
 ]

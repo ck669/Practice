@@ -33,6 +33,11 @@ export default new Router({
       path: '/choice',
       name: 'choice',
       component: ()=> import ('@/components/Choice')
+    },
+    {
+      path: '/chart',
+      name: 'chart',
+      component: ()=> import ('@/components/Chart')
     }
   ]
 })

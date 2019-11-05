@@ -1,8 +1,8 @@
 <template>
   <div id="home">
     <h1>我是首页：{{myNum}}</h1>
-    <el-carousel height="300px">
-      <el-carousel-item v-for="item in imgList" :key="item" >
+    <el-carousel height="400px">
+      <el-carousel-item v-for="(item,index) in imgList" :key="index" >
         <img :src="item.src" :alt="item.title">
       </el-carousel-item>
     </el-carousel>

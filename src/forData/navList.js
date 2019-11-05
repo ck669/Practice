@@ -11,12 +11,12 @@ export default [
     },
     {
         id:3,
-        title:'选择模块',
+        title:'搜索选择',
         name:'choice'
     },
     {
         id:4,
-        title:'个人中心',
-        // name:'apply'
+        title:'图表模块',
+        name:'chart'
     },
 ]
