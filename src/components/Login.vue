@@ -55,11 +55,11 @@ export default {
           };
           console.log(obj);
           if (obj.account === 15916916901 && obj.pwd === 123) {
-            Cookies.set("userName", "蔡徐坤", { expires: 7 });
+            Cookies.set("userName", "院长", { expires: 7 });
             this.$router.push({ name: "home" });
             this.$message.success("登录成功");
             this.$store.commit("changeLogin", true);
-            this.$store.commit("setUserName", "蔡徐坤");
+            this.$store.commit("setUserName", "院长");
           } else {
             this.$message.error("密码输入错误");
           }

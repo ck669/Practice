@@ -15,7 +15,6 @@ const store = new Vuex.Store({
     mutations: { //改变state里的值的方法
 
         changeLogin(state, userLogin) {
-            F
             state.userLogin = userLogin;
         },
         setUserName(state, userName) {
