@@ -3,11 +3,14 @@
     <div class="logo" @click="toHome">
       <img src="../../assets/images/logo.png" alt />
     </div>
-    <ul class="nav-list">
-      <li v-for="item in navList" :key="item.id">
-        <router-link :to="{name:item.name}">{{item.title}}</router-link>
-      </li>
-    </ul>
+    <div class="nav-list">
+      <router-link
+        v-for="item in navList"
+        :key="item.id"
+        :to="{name:item.name}"
+        :class="{active:item.name == $route.name}"
+      >{{item.title}}</router-link>
+    </div>
     <div class="header-right">
       <el-button type="primary" @click="toLogin" v-if="isLogin == false">登录</el-button>
       <span v-else>{{isUserName}}</span>
@@ -32,6 +35,11 @@ export default {
     let userName = Cookies.get("userName");
     this.$store.state.userName = userName;
   },
+  // watch: {
+  //   $route(to, from) {
+  //     console.log(this.$route.name);
+  //   }
+  // },
   computed: {
     isLogin() {
       return this.$store.state.userLogin;
@@ -57,13 +65,13 @@ export default {
 
 <style lang="scss">
 #header {
-  height: 60px;
+  height: 70px;
   width: 1200px;
   margin: 0 auto;
   height: 100%;
   overflow: hidden;
   .logo {
-    width: 60px;
+    width: 70px;
     height: 100%;
     float: left;
     margin-right: 30px;
@@ -76,9 +84,21 @@ export default {
     display: flex;
     justify-content: space-between;
     float: left;
-    li {
-      padding: 10px;
-      font-size: 18px;
+    .active {
+      color: white;
+      background-color: #5db6ff;
+    }
+    .active:hover{
+      color: white;
+    }
+    a {
+      font-size: 16px;
+      height: 100%;
+      display: block;
+      padding: 0 20px;
+    }
+    a:hover {
+      color: #63c24b;
     }
   }
   .header-right {

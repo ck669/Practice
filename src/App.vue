@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <el-container>
-      <el-header>
+      <el-header height="70px">
         <Header />
       </el-header>
       <el-main>
-        <router-view />
+        <router-view :afooterHeight="afooterHeight"/>
       </el-main>
-      <el-footer>
+      <el-footer ref="afooter">
         <Footer />
       </el-footer>
     </el-container>
@@ -22,6 +22,16 @@ export default {
   components: {
     Header,
     Footer
+  },
+  data(){
+    return{
+      afooterHeight:''
+    }
+  },
+  mounted(){
+    
+    console.log('执行了吗APP',this.$refs.afooter.$el.clientHeight)
+    this.afooterHeight = this.$refs.afooter.$el.clientHeight;
   }
 };
 </script>
@@ -32,15 +42,17 @@ export default {
   background-color: white;
   color: #333;
   text-align: center;
-  line-height: 60px;
+  line-height: 70px;
   border-bottom:1px solid black;
 }
 .el-main {
+  width: 1200px;
+  margin: 0 auto;
   min-height: 640px;
 }
 .el-footer {
-  background-color: #b3c0d1;
-  color: #333;
+  background-color: #130a2a;
+  color: #808080;
   text-align: center;
   line-height: 60px;
 }

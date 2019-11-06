@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>个人中心</h1>
+    <h1>Echart图表</h1>
     <div ref="chart1" style="width:500px;height:376px"></div>
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
       // 绘制图表
       let option = {
         title: {
-          text: "折线图堆叠"
+          text: "数据记录"
         },
         tooltip: {
           trigger: "axis"

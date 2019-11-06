@@ -56,10 +56,10 @@ export default {
   },
   mounted() {
     var str = "RUNOOB";
-var enc = window.btoa(str);
-var dec = window.atob(enc);
- 
-var res = "编码字符串为: " + enc + "<br>" + "解码后字符串为: " + dec;
+    var enc = window.btoa(str);
+    var dec = window.atob(enc);
+
+    var res = "编码字符串为: " + enc + "<br>" + "解码后字符串为: " + dec;
     console.log(res);
     console.log(new Date("2016-01-01 17:22:37"));
     console.log(
@@ -97,7 +97,8 @@ var res = "编码字符串为: " + enc + "<br>" + "解码后字符串为: " + de
 
 <style lang="scss" scoped>
 .new {
-  background: wheat;
+  color: #f5dea0;
+  background: #108b00;
   .supload {
     width: 200px;
     height: 200px;

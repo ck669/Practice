@@ -4,23 +4,26 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from '@/store';
-import { 
-  Button, 
-  Select, 
-  Option, 
-  Row, 
-  Header, 
-  Container, 
-  Footer, 
+import {
+  Button,
+  Select,
+  Option,
+  Row,
+  Header,
+  Container,
+  Footer,
   Main,
-  Form, 
-  Input, 
+  Form,
+  Input,
   FormItem,
   Message,
   Step,
   Steps,
   Carousel,
-  CarouselItem
+  CarouselItem,
+  Col,
+  TimePicker,
+  DatePicker
 
 } from 'element-ui';
 
@@ -39,6 +42,9 @@ Vue.use(Step);
 Vue.use(Steps);
 Vue.use(Carousel);
 Vue.use(CarouselItem);
+Vue.use(Col);
+Vue.use(TimePicker);
+Vue.use(DatePicker);
 
 Vue.prototype.$message = Message;
 

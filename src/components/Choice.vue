@@ -1,6 +1,6 @@
 <template>
   <div>
-    选择模块
+    <h1>搜索选择</h1>
     <el-select v-model="value" filterable placeholder="请输内容搜索" @change="changeValue">
       <el-option
         v-for="(item,index) in options"

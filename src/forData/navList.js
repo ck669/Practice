@@ -16,7 +16,7 @@ export default [
     },
     {
         id:4,
-        title:'图表模块',
+        title:'Echart图表',
         name:'chart'
     },
 ]
