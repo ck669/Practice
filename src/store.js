@@ -5,19 +5,20 @@ Vue.use(Vuex);
 
 
 const store = new Vuex.Store({
-    state:{ //存储数据的
+    state: { //存储数据的
 
         //用户登录状态
-        userLogin:false,
+        userLogin: false,
         //用户name
-        userName:null
+        userName: null
     },
-    mutations:{ //改变state里的值的方法
-        
-        changeLogin(state,userLogin){
+    mutations: { //改变state里的值的方法
+
+        changeLogin(state, userLogin) {
+            F
             state.userLogin = userLogin;
         },
-        setUserName(state,userName){
+        setUserName(state, userName) {
             state.userName = userName;
         }
     }

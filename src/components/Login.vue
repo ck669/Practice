@@ -7,10 +7,15 @@
           <el-input type="account" v-model.number="userLoginForm.account" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="pwd" :rules="pwdRules">
-          <el-input type="password" v-model.number="userLoginForm.pwd" autocomplete="off" @keyup.enter.native="submitForm('userLoginForm')"></el-input>
+          <el-input
+            type="password"
+            v-model.number="userLoginForm.pwd"
+            autocomplete="off"
+            @keyup.enter.native="submitForm('userLoginForm')"
+          ></el-input>
         </el-form-item>
         <el-form-item class="login-button">
-          <el-button type="primary" @click="submitForm('userLoginForm')" >登录</el-button>
+          <el-button type="primary" @click="submitForm('userLoginForm')">登录</el-button>
           <el-button @click="resetForm('userLoginForm')">重置</el-button>
         </el-form-item>
       </el-form>
@@ -19,7 +24,7 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 export default {
   data() {
     return {
@@ -50,11 +55,11 @@ export default {
           };
           console.log(obj);
           if (obj.account === 15916916901 && obj.pwd === 123) {
-            Cookies.set('userName','蔡徐坤',{expires:7})
+            Cookies.set("userName", "蔡徐坤", { expires: 7 });
             this.$router.push({ name: "home" });
             this.$message.success("登录成功");
             this.$store.commit("changeLogin", true);
-            this.$store.commit("setUserName", '蔡徐坤');
+            this.$store.commit("setUserName", "蔡徐坤");
           } else {
             this.$message.error("密码输入错误");
           }
@@ -84,7 +89,7 @@ export default {
     background-color: white;
     border-radius: 5px;
     padding: 10px 0;
-    .login-title{
+    .login-title {
       text-align: center;
       margin-bottom: 10px;
     }

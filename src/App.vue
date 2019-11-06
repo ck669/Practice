@@ -5,9 +5,9 @@
         <Header />
       </el-header>
       <el-main>
-        <router-view :afooterHeight="afooterHeight"/>
+        <router-view :afooterHeight="afooterHeight" />
       </el-main>
-      <el-footer ref="afooter">
+      <el-footer height="70px" ref="afooter">
         <Footer />
       </el-footer>
     </el-container>
@@ -23,27 +23,26 @@ export default {
     Header,
     Footer
   },
-  data(){
-    return{
-      afooterHeight:''
-    }
+  data() {
+    return {
+      afooterHeight: ""
+    };
   },
-  mounted(){
-    
-    console.log('执行了吗APP',this.$refs.afooter.$el.clientHeight)
+  mounted() {
+    console.log("执行了吗APP", this.$refs.afooter.$el.clientHeight);
     this.afooterHeight = this.$refs.afooter.$el.clientHeight;
   }
 };
 </script>
 
 <style lang="scss">
-@import './assets/css/reset';
+@import "./assets/css/reset";
 .el-header {
   background-color: white;
   color: #333;
   text-align: center;
   line-height: 70px;
-  border-bottom:1px solid black;
+  border-bottom: 1px solid black;
 }
 .el-main {
   width: 1200px;
@@ -54,6 +53,6 @@ export default {
   background-color: #130a2a;
   color: #808080;
   text-align: center;
-  line-height: 60px;
+  line-height: 70px;
 }
 </style>

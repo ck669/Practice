@@ -1,6 +1,6 @@
 <template>
   <div class="new">
-    我是新模块
+    <h1 class="item-title">传值图片</h1>
     <Son @sccuess="sccuess" />
     <p>被子组件修改的值：{{strr}}</p>
     <table border="1">
@@ -99,6 +99,11 @@ export default {
 .new {
   color: #f5dea0;
   background: #108b00;
+  .item-title {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
   .supload {
     width: 200px;
     height: 200px;

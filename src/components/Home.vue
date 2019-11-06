@@ -1,12 +1,15 @@
 <template>
   <div id="home">
-    <h1>我是首页：{{myNum}}</h1>
+    <h1 class="item-title">我是首页</h1>
     <el-carousel height="400px">
       <el-carousel-item v-for="(item,index) in imgList" :key="index">
         <img :src="item.src" :alt="item.title" />
       </el-carousel-item>
     </el-carousel>
-    <div style="height:800px">换行</div>
+    <div style="height:200px;color:red;font-size:20px;">往下拉,{{myNum}}</div>
+    <div style="height:200px;color:red;font-size:20px;">往下拉</div>
+    <div style="height:200px;color:red;font-size:20px;">往下拉</div>
+    <div style="height:200px;color:red;font-size:20px;">啥也没有了</div>
     <div class="footer-fixed" ref="footerFixed">
       <div class="footer-fixed-logo"></div>
       <div class="footer-fixed-content">你好,{{username}}</div>
@@ -16,7 +19,7 @@
 
 <script>
 import toNum from "@/config";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 export default {
   name: "HelloWorld",
   data() {
@@ -36,11 +39,11 @@ export default {
         }
       ],
       myNum: toNum,
-      username:''
+      username: ""
     };
   },
-  created(){
-    this.username = Cookies.get('userName');
+  created() {
+    this.username = Cookies.get("userName");
   },
   mounted() {
     // console.log("可视区域", document.documentElement.clientHeight);
@@ -90,6 +93,11 @@ a {
   color: #42b983;
 }
 #home {
+  .item-title {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
   .el-carousel__container {
     .el-carousel__item {
       img {

@@ -1,7 +1,7 @@
 <template>
   <div class="son">
     我是子组件
-    <button @click="getData">点击我</button>
+    <button @click="getData">请点击下方黄色框框</button>
     {{student.name}}&emsp;{{student.gender}}
   </div>
 </template>
@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       student: {
-        name: "李",
+        name: "慕容云海",
         gender: "男"
       },
       por: {
@@ -29,7 +29,7 @@ export default {
       this.$emit("sccuess", "良好");
     },
     getData() {
-      alert(this.student.name);
+      alert(this.student.name + "，不是点我");
     }
   }
 };

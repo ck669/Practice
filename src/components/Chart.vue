@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <h1>Echart图表</h1>
+  <div class="echart">
+    <h1 class="item-title">Echart图表</h1>
     <div ref="chart1" style="width:500px;height:376px"></div>
   </div>
 </template>
 
 <script>
-
 // 引入基本模板
 let echarts = require("echarts/lib/echarts");
 // 引入柱状图组件
@@ -83,3 +82,13 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.echart {
+  .item-title {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div class="apply-race">
-    <h1>申请竞赛</h1>
+    <h1 class="item-title">申请竞赛</h1>
     <el-steps :active="numShow" align-center>
       <el-step title="竞赛介绍"></el-step>
       <el-step title="时间安排"></el-step>
@@ -27,7 +27,7 @@
         </el-form>
         <div class="form-footer">
           <el-button @click="toTime">下一步</el-button>&emsp;
-          <el-button type="primary" @click="myFunction">保存</el-button>
+          <el-button type="primary" @click="preserveMy">保存</el-button>
         </div>
       </div>
       <div v-show="numShow == 2 ">
@@ -49,7 +49,7 @@
                 ></el-date-picker>
               </el-form-item>
             </el-col>
-            <el-col class="line time-middle" :span="2" >-</el-col>
+            <el-col class="line time-middle" :span="2">-</el-col>
             <el-col :span="11">
               <el-form-item prop="date2">
                 <el-date-picker placeholder="选择时间" v-model="timeForm.date2" style="width: 100%;"></el-date-picker>
@@ -67,10 +67,15 @@
                 ></el-date-picker>
               </el-form-item>
             </el-col>
-            <el-col class="line time-middle" :span="2" >-</el-col>
+            <el-col class="line time-middle" :span="2">-</el-col>
             <el-col :span="11">
               <el-form-item prop="reviewDate2">
-                <el-date-picker type="date" placeholder="选择日期" v-model="timeForm.reviewDate2" style="width: 100%;"></el-date-picker>
+                <el-date-picker
+                  type="date"
+                  placeholder="选择日期"
+                  v-model="timeForm.reviewDate2"
+                  style="width: 100%;"
+                ></el-date-picker>
               </el-form-item>
             </el-col>
           </el-form-item>
@@ -78,7 +83,7 @@
         <div class="form-footer">
           <el-button @click="toNext(1)">上一步</el-button>&emsp;
           <el-button @click="toThere">下一步</el-button>&emsp;
-          <el-button type="primary" @click="myFunction">保存</el-button>
+          <el-button type="primary" @click="preserveMy">保存</el-button>
         </div>
       </div>
       <div v-show="numShow == 3 ">
@@ -106,8 +111,8 @@
         <br />
         <div class="form-footer">
           <el-button @click="toNext(2)">上一步</el-button>&emsp;
-          <el-button >发布</el-button>&emsp;
-          <el-button type="primary" @click="myFunction">保存</el-button>
+          <el-button @click="releaseMy">发布</el-button>&emsp;
+          <el-button type="primary" @click="preserveMy">保存</el-button>
         </div>
       </div>
     </div>
@@ -136,8 +141,8 @@ export default {
       timeForm: {
         date1: "",
         date2: "",
-        reviewDate1:"",
-        reviewDate2:"",
+        reviewDate1: "",
+        reviewDate2: ""
       },
       timeRules: {
         date1: [
@@ -212,13 +217,17 @@ export default {
         });
       }
     },
-    myFunction() {
+    preserveMy() {
       let that = this;
       let applyReca = {
         detailsForm: that.detailsForm,
         timeForm: that.timeForm
       };
-      localStorage.setItem("applyReca",JSON.stringify(applyReca));
+      localStorage.setItem("applyReca", JSON.stringify(applyReca));
+      that.$message.success("已保存 localStorage 中");
+    },
+    releaseMy() {
+      this.$message.warning("亲，暂时没有地方发布哟");
     },
     //清空编辑内容
     resetForm(formName) {
@@ -230,12 +239,17 @@ export default {
 
 <style lang="scss">
 .apply-race {
+  .item-title {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
   .content {
     width: 600px;
     margin: 40px auto;
     .demo-ruleForm {
       min-height: 400px;
-      .time-middle{
+      .time-middle {
         text-align: center;
       }
     }

@@ -7,37 +7,37 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect:'/home'
+      redirect: '/home'
     },
     {
       path: '/home',
       name: 'home',
-      component: ()=> import ('@/components/Home')
+      component: () => import('@/components/Home')
     },
     {
       path: '/login',
       name: 'login',
-      component: ()=> import ('@/components/Login')
+      component: () => import('@/components/Login')
     },
     {
       path: '/newComponent',
       name: 'newComponent',
-      component: ()=> import ('@/components/NewComponent')
+      component: () => import('@/components/NewComponent')
     },
     {
       path: '/apply',
       name: 'apply',
-      component: ()=> import ('@/components/apply')
+      component: () => import('@/components/apply')
     },
     {
       path: '/choice',
       name: 'choice',
-      component: ()=> import ('@/components/Choice')
+      component: () => import('@/components/Choice')
     },
     {
       path: '/chart',
       name: 'chart',
-      component: ()=> import ('@/components/Chart')
+      component: () => import('@/components/Chart')
     }
   ]
 })

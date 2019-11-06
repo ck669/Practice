@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>搜索选择</h1>
+  <div class="choice">
+    <h1 class="item-title">搜索选择</h1>
     <el-select v-model="value" filterable placeholder="请输内容搜索" @change="changeValue">
       <el-option
         v-for="(item,index) in options"
@@ -41,10 +41,20 @@ export default {
       value: ""
     };
   },
-  methods:{
-      changeValue(){
-          console.log(this.value);
-      }
+  methods: {
+    changeValue() {
+      console.log(this.value);
+    }
   }
 };
 </script>
+
+<style lang="scss">
+.choice {
+  .item-title {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+</style>
