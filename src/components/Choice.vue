@@ -38,8 +38,15 @@ export default {
           label: "北京烤鸭"
         }
       ],
-      value: ""
+      value: "",
+      value1:null
     };
+  },
+  watch:{
+    value1(newValue,oldValue){
+      console.log('newValue',newValue);
+      console.log('oldValue',oldValue);
+    }
   },
   methods: {
     changeValue() {
