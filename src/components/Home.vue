@@ -48,26 +48,31 @@ export default {
   mounted() {
     // console.log("可视区域", document.documentElement.clientHeight);
     // console.log("页面总高", document.body.scrollHeight);
-
     this.$refs.footerFixed.style.position = "fixed";
     window.addEventListener("scroll", this.handleScroll, true); // 监听（绑定）滚轮滚动事件
   },
   methods: {
     handleScroll() {
-      var scrollTop =
-        document.documentElement.scrollTop ||
-        window.pageYOffset ||
-        document.body.scrollTop;
-      var myScrollHeight =
-        document.documentElement.scrollHeight - this.$props.afooterHeight;
-      if (myScrollHeight < document.documentElement.clientHeight + scrollTop) {
-        this.$refs.footerFixed.style.position = "absolute";
-        this.$refs.footerFixed.style.top = myScrollHeight - 60 + "px";
-        this.$refs.footerFixed.style.bottom = "auto";
-      } else {
-        this.$refs.footerFixed.style.position = "fixed";
-        this.$refs.footerFixed.style.top = "auto";
-        this.$refs.footerFixed.style.bottom = "0px";
+      if (this.$refs.footerFixed) {
+        var scrollTop =
+          document.documentElement.scrollTop ||
+          window.pageYOffset ||
+          document.body.scrollTop;
+        var myScrollHeight =
+          document.documentElement.scrollHeight - this.$props.afooterHeight;
+
+        if (
+          myScrollHeight <
+          document.documentElement.clientHeight + scrollTop
+        ) {
+          this.$refs.footerFixed.style.position = "absolute";
+          this.$refs.footerFixed.style.top = myScrollHeight - 60 + "px";
+          this.$refs.footerFixed.style.bottom = "auto";
+        } else {
+          this.$refs.footerFixed.style.position = "fixed";
+          this.$refs.footerFixed.style.top = "auto";
+          this.$refs.footerFixed.style.bottom = "0px";
+        }
       }
     }
   },
@@ -114,6 +119,7 @@ a {
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     line-height: 60px;
+    z-index: 2;
     .footer-fixed-logo {
       width: 90px;
       height: 100px;
@@ -124,6 +130,7 @@ a {
       bottom: 0;
     }
     .footer-fixed-content {
+      width: 88%;
       position: relative;
       left: 100px;
       font: bold 20px arial;

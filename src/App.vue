@@ -47,7 +47,7 @@ export default {
 .el-main {
   width: 1200px;
   margin: 0 auto;
-  min-height: 640px;
+  min-height: 618px;
 }
 .el-footer {
   background-color: #130a2a;

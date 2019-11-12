@@ -3,12 +3,15 @@
     <h1 class="item-title">传值图片</h1>
     <Son @sccuess="sccuess" />
     <p>被子组件修改的值：{{strr}}</p>
-    <table border="1">
-      <tr v-for="(item,index) in porsons" :key="index">
+    <table border="1" @click="clickItem($event)">
+      <tr v-for="(item,index) in porsons" :key="index" :data-val="item.val">
         <td style="padding:10px">{{item.name}}</td>
         <td style="padding:10px">{{item.age}}</td>
       </tr>
     </table>
+    <ul @click="clickItemli($event)" class="ul-lis">
+      <li v-for="(item,index) in porsons" :key="index" :data-val="item.val">{{item.name}}</li>
+    </ul>
     <div class="supload">
       <Upload class="upload-in" @uploadover="uploadover" :accept="'.zip,.jpg'" />
       <img :src="src" style="width:200px" />
@@ -37,14 +40,17 @@ export default {
       strr: "",
       porsons: [
         {
+          val: "李白",
           name: "李白",
           age: 18
         },
         {
+          val: "王昭君",
           name: "王昭君",
           age: 16
         },
         {
+          val: "浏览器",
           name: "浏览器",
           age: 10
         }
@@ -61,13 +67,14 @@ export default {
 
     var res = "编码字符串为: " + enc + "<br>" + "解码后字符串为: " + dec;
     console.log(res);
-    console.log(new Date("2016-01-01 17:22:37"));
+    let date = new Date("Wed Nov 20 2019 00:00:00 GMT+0800 (中国标准时间)");
+
     console.log(
-      new Date("2016-01-01 17:22:37").getFullYear() +
+      date.getFullYear() +
         "-" +
-        (new Date("2016-01-01 17:22:37").getMonth() + 1).toString() +
+        (date.getMonth() + 1).toString() +
         "-" +
-        new Date("2016-01-01 17:22:37").getDate()
+        date.getDate()
     );
   },
   methods: {
@@ -90,6 +97,14 @@ export default {
     },
     myRight() {
       alert("你执行了右键");
+    },
+    clickItem(event) {
+      var e = event || window.event;
+      console.log(e.target.parentNode.dataset.val);
+    },
+    clickItemli(event) {
+      var e = event || window.event;
+      console.log(e.target.dataset.val);
     }
   }
 };
@@ -103,6 +118,12 @@ export default {
     font-size: 20px;
     text-align: center;
     margin-bottom: 10px;
+  }
+  .ul-lis {
+    li {
+      padding: 10px;
+      border-bottom: 1px solid black;
+    }
   }
   .supload {
     width: 200px;

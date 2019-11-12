@@ -1,4 +1,4 @@
-# Practice
+# practice
 
 > A Vue.js project
 

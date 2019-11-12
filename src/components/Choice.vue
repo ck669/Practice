@@ -9,10 +9,13 @@
         :value="item.value"
       ></el-option>
     </el-select>
+    <!-- <div>count:{{$store.state.count}}</div> -->
+    <button @click="dell(10)">点击我</button>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -39,19 +42,25 @@ export default {
         }
       ],
       value: "",
-      value1:null
+      value1: null
     };
   },
-  watch:{
-    value1(newValue,oldValue){
-      console.log('newValue',newValue);
-      console.log('oldValue',oldValue);
+  watch: {
+    value1(newValue, oldValue) {
+      console.log("newValue", newValue);
+      console.log("oldValue", oldValue);
     }
   },
+  mounted() {
+    console.log(this.$store.dispatch);
+    this.$store.dispatch("changePersonList",20);
+  },
   methods: {
+    ...mapActions({dell:"changePersonList"}),
     changeValue() {
       console.log(this.value);
-    }
+    },
+
   }
 };
 </script>
