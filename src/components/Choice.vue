@@ -11,6 +11,7 @@
     </el-select>
     <!-- <div>count:{{$store.state.count}}</div> -->
     <button @click="dell(10)">点击我</button>
+    <input type="text" v-model="searchStr" />
   </div>
 </template>
 
@@ -42,25 +43,32 @@ export default {
         }
       ],
       value: "",
-      value1: null
+      value1: null,
+      searchStr: ""
     };
   },
   watch: {
     value1(newValue, oldValue) {
       console.log("newValue", newValue);
       console.log("oldValue", oldValue);
+    },
+    searchStr: {
+      handler: "fetchPostList",
+      immediate: true
     }
   },
   mounted() {
-    console.log(this.$store.dispatch);
-    this.$store.dispatch("changePersonList",20);
+    // console.log(this.$store.dispatch);
+    // this.$store.dispatch("changePersonList",20);
   },
   methods: {
-    ...mapActions({dell:"changePersonList"}),
+    ...mapActions({ dell: "changePersonList" }),
     changeValue() {
       console.log(this.value);
     },
-
+    fetchPostList(){
+      console.log('改变内容执行请求',this.searchStr);
+    }
   }
 };
 </script>

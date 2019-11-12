@@ -216,7 +216,7 @@ export default {
               );
             }
             return !(
-              time.getTime() >= Number(new Date(startTime)) &&
+              time.getTime() > Number(new Date(startTime)) &&
               time.getTime() < Number(new Date(endTime))
             );
           } else if (endTime) {
@@ -245,14 +245,21 @@ export default {
             endTime = this.timeForm.releaseDate;
           }
           if (endTime && startTime) {
-            return !(
-              time.getTime() >= Number(new Date(startTime)) &&
-              time.getTime() < Number(new Date(endTime))
-            );
+            if (this.timeForm.reviewDate1) {
+              return !(
+                time.getTime() >= Number(new Date(startTime)) &&
+                time.getTime() < Number(new Date(endTime))
+              );
+            } else {
+              return !(
+                time.getTime() > Number(new Date(startTime)) &&
+                time.getTime() < Number(new Date(endTime))
+              );
+            }
           } else if (endTime) {
             return time.getTime() >= Number(new Date(endTime));
           } else {
-            return time.getTime() < Number(new Date(startTime));
+            return time.getTime() <= Number(new Date(startTime));
           }
         }
       },
@@ -352,8 +359,9 @@ export default {
       console.log("审核结束时间=", new Date(that.timeForm.reviewDate2));
       console.log("发布时间=", new Date(that.timeForm.releaseDate));
       var d = new Date(that.timeForm.releaseDate);
-       console.log(d);
-      var datetime = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+      console.log(d);
+      var datetime =
+        d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
       console.log("发布时间转格式=", datetime);
 
       if (

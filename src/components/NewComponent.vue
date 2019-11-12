@@ -67,7 +67,8 @@ export default {
 
     var res = "编码字符串为: " + enc + "<br>" + "解码后字符串为: " + dec;
     console.log(res);
-    let date = new Date("Wed Nov 20 2019 00:00:00 GMT+0800 (中国标准时间)");
+    // let date = new Date("Wed Nov 20 2019 00:00:00 GMT+0800 (中国标准时间)");
+    let date = new Date();
 
     console.log(
       date.getFullYear() +
