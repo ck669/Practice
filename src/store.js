@@ -37,9 +37,9 @@ const store = new Vuex.Store({
             ctx.commit('add', { count: mynum });
         },
         changeP(ctx, addValue) {
-            setTimeout(() => {
+            // setTimeout(() => {
                 ctx.commit('changePersonList', addValue);//触发mutations中的changePersonList函数
-            }, 1000)
+            // }, 1000)
 
         }
     }

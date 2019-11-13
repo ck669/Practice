@@ -9,9 +9,12 @@
         :value="item.value"
       ></el-option>
     </el-select>
-    <!-- <div>count:{{$store.state.count}}</div> -->
-    <button @click="dell(10)">点击我</button>
+    <div>count:{{$store.state.personList[0]}}</div>
+    <button @click="changeP(10)">click Me change</button>
+    <br />
     <input type="text" v-model="searchStr" />
+    <div class="loading"></div>
+    <a href="#">超链接</a>
   </div>
 </template>
 
@@ -57,17 +60,20 @@ export default {
       immediate: true
     }
   },
+  created() {
+    // this.changeP(20);
+  },
   mounted() {
-    // console.log(this.$store.dispatch);
-    // this.$store.dispatch("changePersonList",20);
+    // console.log(this.$store.dispatch('changeP',20));
+    this.changeP(20);
   },
   methods: {
-    ...mapActions({ dell: "changePersonList" }),
+    ...mapActions(["changeP"]),
     changeValue() {
       console.log(this.value);
     },
-    fetchPostList(){
-      console.log('改变内容执行请求',this.searchStr);
+    fetchPostList() {
+      console.log("改变内容立即执行请求=", this.searchStr);
     }
   }
 };
@@ -80,5 +86,53 @@ export default {
     text-align: center;
     margin-bottom: 10px;
   }
+  input[type="text"],
+  textarea {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    outline: none;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #ddd;
+  }
+
+  input[type="text"]:focus,
+  textarea:focus {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid rgba(81, 203, 238, 1);
+  }
+  .loading:after {
+    font: bold 15px '微软雅黑';
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    animation: ellipsis 2s infinite;
+    content: "\2026"; /* ascii code for the ellipsis character */
+  }
+  @keyframes ellipsis {
+    from {
+      width: 2px;
+    }
+    to {
+      width: 15px;
+    }
+  }
+  a:link {
+    color: blue;
+  }
+  a:visited {
+    color: #5db6ff;
+  }
+  a:hover {
+    color: red;
+  }
+  a:active {
+    color: yellow;
+  }
+
 }
 </style>
