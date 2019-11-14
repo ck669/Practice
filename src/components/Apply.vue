@@ -212,7 +212,7 @@ export default {
             if (this.timeForm.reviewDate2) {
               return !(
                 time.getTime() > Number(new Date(startTime)) &&
-                time.getTime() < Number(new Date(endTime))
+                time.getTime() <= Number(new Date(endTime))
               );
             }
             return !(
