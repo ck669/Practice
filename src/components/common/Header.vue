@@ -65,13 +65,13 @@ export default {
 
 <style lang="scss">
 #header {
-  height: 70px;
+  height: 60px;
   width: 1200px;
   margin: 0 auto;
   height: 100%;
   overflow: hidden;
   .logo {
-    width: 70px;
+    width: 60px;
     height: 100%;
     float: left;
     margin-right: 30px;
@@ -85,20 +85,22 @@ export default {
     justify-content: space-between;
     float: left;
     .active {
-      color: white;
-      background-color: #5db6ff;
+      color: snow;
+      background-color: #2c98e7;
     }
-    .active:hover{
-      color: white;
+    .active:hover {
+      color: snow;
     }
     a {
       font-size: 16px;
       height: 100%;
       display: block;
-      padding: 0 20px;
+      padding: 0 32px;
+      margin: 0 .5px;
     }
     a:hover {
-      color: #63c24b;
+      color: snow;
+      background-color: #2c98e7;
     }
   }
   .header-right {
