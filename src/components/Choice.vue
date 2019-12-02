@@ -17,16 +17,36 @@
         :key="index"
         :class="{'active-item':index%2!==0}"
       >
-        <div>{{item.key}}<input type="text" v-model="item.key"></div>
-        <div>{{item.name}}<input type="text" v-model="item.name"></div>
+        <div>
+          <input type="text" v-model="item.key" />
+        </div>
+        <div>
+          <input type="text" v-model="item.name" />
+        </div>
         <div>
           <span v-show="index !== 0" @click="moveUP(index)" class="span-item">上移</span>
           <span v-show="index === 0" class="span-item"></span>
           &nbsp;&nbsp;&nbsp;
-          <span v-show="index !== dataList.length-1 " @click="moveDown(index)">下移</span>
+          <span
+            v-show="index !== dataList.length-1 "
+            @click="moveDown(index)"
+          >下移</span>
         </div>
       </li>
     </ul>
+    <el-table :data="dataList" stripe style="width: 100%">
+      <el-table-column label="日期" width="180" align="center">
+        <template slot-scope="scope">
+          <input type="text" v-model="scope.row.name">
+        </template>
+      </el-table-column>
+      <el-table-column label="操作" width="180" align="center">
+        <template slot-scope="scope">
+          <el-button @click="moveUP(scope.$index)"> 上移</el-button>
+          <el-button> 下移</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -65,15 +85,15 @@ export default {
         },
         {
           key: "02",
-          name: "张益达2"
+          name: "张飞"
         },
         {
           key: "03",
-          name: "张益达3"
+          name: "李白"
         },
         {
           key: "04",
-          name: "张益达4"
+          name: "娜可露露"
         }
       ]
     };
@@ -98,18 +118,18 @@ export default {
     },
     add() {
       this.dataList.push({
-        key: '',
-        name: ''
-      })
+        key: "",
+        name: ""
+      });
       console.log(this.value);
     },
     moveUP(inde) {
-      console.log('上移',inde);
+      console.log("上移", inde);
       this.moveComm(inde, inde - 1);
       console.log(this.dataList);
     },
     moveDown(inde) {
-      console.log('下移',inde);
+      console.log("下移", inde);
       this.moveComm(inde, inde + 1);
       console.log(this.dataList);
     },
@@ -130,21 +150,28 @@ export default {
   }
   .lis {
     padding: 30px 0;
-    border: 1px solid;
+    // border: 1px solid;
     .li-item {
       display: flex;
       padding: 14px 0;
       div {
         width: 30%;
-        .span-item{
+        .span-item {
           width: 28px;
           height: 15px;
           display: inline-block;
+        }
+        input {
+          border: 0 none;
+          outline: none;
         }
       }
     }
     .active-item {
       background: lightblue;
+      input {
+        background: lightblue;
+      }
     }
   }
 }
