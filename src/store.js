@@ -6,7 +6,6 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: { //存储数据的
-
         //用户登录状态
         userLogin: false,
         //用户name
