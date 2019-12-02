@@ -1,4 +1,4 @@
-console.log('执行了吗',process.env);
+console.log('这是什么环境=',process.env);
 
 let num =6;
 export default num;

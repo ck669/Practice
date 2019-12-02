@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <el-container>
-      <el-header height="70px">
+      <el-header height="60px">
         <Header />
       </el-header>
       <el-main>
@@ -37,22 +37,25 @@ export default {
 
 <style lang="scss">
 @import "./assets/css/reset";
-.el-header {
-  background-color: white;
-  color: #333;
-  text-align: center;
-  line-height: 70px;
-  border-bottom: 1px solid black;
-}
-.el-main {
-  width: 1200px;
-  margin: 0 auto;
-  min-height: 640px;
-}
-.el-footer {
-  background-color: #130a2a;
-  color: #808080;
-  text-align: center;
-  line-height: 70px;
+.el-container {
+  background: #fdfdfd;
+  .el-header {
+    background-color: #fdfdfd;;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+    border-bottom: 1px solid black;
+  }
+  .el-main {
+    width: 1200px;
+    margin: 0 auto;
+    min-height: 616px;
+  }
+  .el-footer {
+    background-color: #130a2a;
+    color: #808080;
+    text-align: center;
+    line-height: 70px;
+  }
 }
 </style>

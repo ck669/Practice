@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -83,7 +84,15 @@ export default {
     //   console.log('oldValue',oldValue);
     // }
   },
+  created() {
+    // this.changeP(20);
+  },
+  mounted() {
+    // console.log(this.$store.dispatch('changeP',20));
+    this.changeP(20);
+  },
   methods: {
+    ...mapActions(["changeP"]),
     changeValue() {
       console.log(this.value);
     },

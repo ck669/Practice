@@ -31,53 +31,54 @@
         </div>
       </div>
       <div v-show="numShow == 2 ">
-        <el-form
-          :model="timeForm"
-          ref="timeForm"
-          label-width="100px"
-          class="demo-ruleForm"
-          :rules="timeRules"
-        >
+        <el-form :model="timeForm" label-width="100px" :rules="timeRules">
           <el-form-item label="报名时间" required>
-            <el-col :span="11">
-              <el-form-item prop="date1">
-                <el-date-picker
-                  type="date"
-                  placeholder="选择日期"
-                  v-model="timeForm.date1"
-                  style="width: 100%;"
-                ></el-date-picker>
-              </el-form-item>
-            </el-col>
-            <el-col class="line time-middle" :span="2">-</el-col>
-            <el-col :span="11">
-              <el-form-item prop="date2">
-                <el-date-picker placeholder="选择时间" v-model="timeForm.date2" style="width: 100%;"></el-date-picker>
-              </el-form-item>
-            </el-col>
+            <el-date-picker
+              v-model="timeForm.date1"
+              :clearable="true"
+              :picker-options="dataOptions1"
+              style="width:180px"
+              placeholder="报名开始时间"
+              type="date"
+            />
+            <samp>至</samp>
+            <el-date-picker
+              v-model="timeForm.date2"
+              :clearable="true"
+              :picker-options="dataOptions2"
+              style="width:180px"
+              placeholder="报名结束时间"
+              type="date"
+            />
           </el-form-item>
           <el-form-item label="评审时间" required>
-            <el-col :span="11">
-              <el-form-item prop="reviewDate1">
-                <el-date-picker
-                  type="date"
-                  placeholder="选择日期"
-                  v-model="timeForm.reviewDate1"
-                  style="width: 100%;"
-                ></el-date-picker>
-              </el-form-item>
-            </el-col>
-            <el-col class="line time-middle" :span="2">-</el-col>
-            <el-col :span="11">
-              <el-form-item prop="reviewDate2">
-                <el-date-picker
-                  type="date"
-                  placeholder="选择日期"
-                  v-model="timeForm.reviewDate2"
-                  style="width: 100%;"
-                ></el-date-picker>
-              </el-form-item>
-            </el-col>
+            <el-date-picker
+              v-model="timeForm.reviewDate1"
+              :clearable="true"
+              :picker-options="reviewOptions1"
+              style="width:180px"
+              placeholder="评审开始时间"
+              type="date"
+            />
+            <samp>至</samp>
+            <el-date-picker
+              v-model="timeForm.reviewDate2"
+              :clearable="true"
+              :picker-options="reviewOptions2"
+              style="width:180px"
+              placeholder="评审结束时间"
+              type="date"
+            />
+          </el-form-item>
+          <el-form-item label="发布时间" prop="releaseDate">
+            <el-date-picker
+              v-model="timeForm.releaseDate"
+              :clearable="true"
+              :picker-options="releaseOptions"
+              style="width:180px"
+              placeholder="发布时间"
+              type="date"
+            />
           </el-form-item>
         </el-form>
         <div class="form-footer">
@@ -142,7 +143,145 @@ export default {
         date1: "",
         date2: "",
         reviewDate1: "",
-        reviewDate2: ""
+        reviewDate2: "",
+        releaseDate: ""
+      },
+      dataOptions1: {
+        disabledDate: time => {
+          if (this.timeForm.date2) {
+            return time.getTime() > Number(new Date(this.timeForm.date2));
+          }
+          if (this.timeForm.reviewDate1) {
+            return (
+              time.getTime() >= Number(new Date(this.timeForm.reviewDate1))
+            );
+          }
+          if (this.timeForm.reviewDate2) {
+            return (
+              time.getTime() >= Number(new Date(this.timeForm.reviewDate2))
+            );
+          }
+          if (this.timeForm.releaseDate) {
+            return (
+              time.getTime() >= Number(new Date(this.timeForm.releaseDate))
+            );
+          }
+        }
+      },
+      dataOptions2: {
+        disabledDate: time => {
+          let startTime = 0;
+          let endTime = 0;
+          if (this.timeForm.date1) {
+            startTime = this.timeForm.date1;
+          }
+          if (this.timeForm.reviewDate1) {
+            endTime = this.timeForm.reviewDate1;
+          } else if (this.timeForm.reviewDate2) {
+            endTime = this.timeForm.reviewDate2;
+          } else if (this.timeForm.releaseDate) {
+            endTime = this.timeForm.releaseDate;
+          }
+          if (endTime && startTime) {
+            return !(
+              time.getTime() >= Number(new Date(startTime)) &&
+              time.getTime() < Number(new Date(endTime))
+            );
+          } else if (endTime) {
+            return time.getTime() >= Number(new Date(endTime));
+          } else {
+            return time.getTime() < Number(new Date(startTime));
+          }
+        }
+      },
+      reviewOptions1: {
+        disabledDate: time => {
+          let startTime = 0;
+          let endTime = 0;
+          if (this.timeForm.date2) {
+            startTime = this.timeForm.date2;
+          } else if (this.timeForm.date1) {
+            startTime = this.timeForm.date1;
+          }
+          if (this.timeForm.reviewDate2) {
+            endTime = this.timeForm.reviewDate2;
+          } else if (this.timeForm.releaseDate) {
+            endTime = this.timeForm.releaseDate;
+          }
+          if (endTime && startTime) {
+            if (this.timeForm.reviewDate2) {
+              return !(
+                time.getTime() > Number(new Date(startTime)) &&
+                time.getTime() <= Number(new Date(endTime))
+              );
+            }
+            return !(
+              time.getTime() > Number(new Date(startTime)) &&
+              time.getTime() < Number(new Date(endTime))
+            );
+          } else if (endTime) {
+            if (this.timeForm.reviewDate2) {
+              return time.getTime() > Number(new Date(endTime));
+            } else {
+              return time.getTime() >= Number(new Date(endTime));
+            }
+          } else {
+            return time.getTime() <= Number(new Date(startTime));
+          }
+        }
+      },
+      reviewOptions2: {
+        disabledDate: time => {
+          let startTime = 0;
+          let endTime = 0;
+          if (this.timeForm.reviewDate1) {
+            startTime = this.timeForm.reviewDate1;
+          } else if (this.timeForm.date2) {
+            startTime = this.timeForm.date2;
+          } else if (this.timeForm.date1) {
+            startTime = this.timeForm.date1;
+          }
+          if (this.timeForm.releaseDate) {
+            endTime = this.timeForm.releaseDate;
+          }
+          if (endTime && startTime) {
+            if (this.timeForm.reviewDate1) {
+              return !(
+                time.getTime() >= Number(new Date(startTime)) &&
+                time.getTime() < Number(new Date(endTime))
+              );
+            } else {
+              return !(
+                time.getTime() > Number(new Date(startTime)) &&
+                time.getTime() < Number(new Date(endTime))
+              );
+            }
+          } else if (endTime) {
+            return time.getTime() >= Number(new Date(endTime));
+          } else {
+            return time.getTime() <= Number(new Date(startTime));
+          }
+        }
+      },
+      releaseOptions: {
+        disabledDate: time => {
+          if (this.timeForm.reviewDate2) {
+            return (
+              time.getTime() <= Number(new Date(this.timeForm.reviewDate2))
+            );
+          }
+          if (this.timeForm.reviewDate1) {
+            return (
+              time.getTime() <= Number(new Date(this.timeForm.reviewDate1))
+            );
+          }
+          if (this.timeForm.date2) {
+            return time.getTime() <= Number(new Date(this.timeForm.date2));
+          }
+          if (this.timeForm.date1) {
+            return time.getTime() <= Number(new Date(this.timeForm.date1));
+          }
+        }
       },
       timeRules: {
         date1: [
@@ -176,10 +315,19 @@ export default {
             message: "请选择时间",
             trigger: "change"
           }
+        ],
+        releaseDate: [
+          {
+            type: "date",
+            required: true,
+            message: "请选择时间",
+            trigger: "change"
+          }
         ]
       }
     };
   },
+
   mounted() {
     console.log("applyReca", JSON.parse(localStorage.getItem("applyReca")));
   },
@@ -204,17 +352,29 @@ export default {
     },
     toThere() {
       let that = this;
-      if (!that.timeForm.date1 || !that.timeForm.date2) {
+      console.log(that.timeForm);
+      console.log("申请开始时间=", new Date(that.timeForm.date1));
+      console.log("申请结束时间=", new Date(that.timeForm.date2));
+      console.log("审核开始时间=", new Date(that.timeForm.reviewDate1));
+      console.log("审核结束时间=", new Date(that.timeForm.reviewDate2));
+      console.log("发布时间=", new Date(that.timeForm.releaseDate));
+      var d = new Date(that.timeForm.releaseDate);
+      console.log(d);
+      var datetime =
+        d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+      console.log("发布时间转格式=", datetime);
+
+      if (
+        !that.timeForm.date1 ||
+        !that.timeForm.date2 ||
+        !that.timeForm.reviewDate1 ||
+        !that.timeForm.reviewDate2 ||
+        !that.timeForm.releaseDate
+      ) {
         that.$message.error("请填写必填项");
         return;
       } else {
-        that.$refs.timeForm.validate(valid => {
-          if (valid) {
-            that.numShow = 3;
-          } else {
-            return;
-          }
-        });
+        that.numShow = 3;
       }
     },
     preserveMy() {
