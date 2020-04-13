@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <div class="logo" @click="toHome">
-      <img src="../../assets/images/logo.png" alt />
+      <img src="../assets/images/logo.png" alt />
     </div>
     <div class="nav-list">
       <router-link

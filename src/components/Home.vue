@@ -6,6 +6,38 @@
         <img :src="item.src" :alt="item.title" />
       </el-carousel-item>
     </el-carousel>
+    <br>
+    <br>
+    <el-row>
+      <el-form :model="timeForm" label-width="100px">
+        <el-col :span="8">
+          <el-form-item label="报名时间">
+            <el-input type="account" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="报名时间">
+            <el-input type="account" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="报名时间">
+            <el-input type="account" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :span="8">
+          <el-form-item label="报名时间">
+            <nxDatePicker
+              range="-"
+              valueFormat="yyyy-MM-dd"
+              @changeDate="changeDate"
+              :placeholder="['开始时间', '结束时间']"
+              :disabledDates="['2019-12-02', '2019-12-19']"
+            ></nxDatePicker>
+          </el-form-item>
+        </el-col>
+      </el-form>
+    </el-row>
     <div style="height:200px;color:red;font-size:20px;">往下拉,{{myNum}}</div>
     <div style="height:200px;color:red;font-size:20px;">往下拉</div>
     <div style="height:200px;color:red;font-size:20px;">往下拉</div>
@@ -20,6 +52,7 @@
 <script>
 import toNum from "@/config";
 import Cookies from "js-cookie";
+import nxDatePicker from '@/components/nx-date-picker';
 export default {
   name: "HelloWorld",
   data() {
@@ -39,17 +72,12 @@ export default {
         }
       ],
       myNum: toNum,
-      username: ""
+      username: "",
+      timeForm:{
+        startDates: '',
+        lastDates: '',
+      }
     };
-  },
-  created() {
-    this.username = Cookies.get("userName");
-  },
-  mounted() {
-    // console.log("可视区域", document.documentElement.clientHeight);
-    // console.log("页面总高", document.body.scrollHeight);
-    this.$refs.footerFixed.style.position = "fixed";
-    window.addEventListener("scroll", this.handleScroll, true); // 监听（绑定）滚轮滚动事件
   },
   methods: {
     handleScroll() {
@@ -74,9 +102,27 @@ export default {
           this.$refs.footerFixed.style.bottom = "0px";
         }
       }
+    },
+    changeDate(starts, lasts){
+      this.timeForm.startDates = starts;
+      this.timeForm.lastDates = lasts;
+      console.log('父开始时间', this.timeForm.startDates);
+      console.log('父结束时间', this.timeForm.lastDates);
     }
   },
-  props: ["afooterHeight"]
+  created() {
+    this.username = Cookies.get("userName");
+  },
+  mounted() {
+    // console.log("可视区域", document.documentElement.clientHeight);
+    // console.log("页面总高", document.body.scrollHeight);
+    this.$refs.footerFixed.style.position = "fixed";
+    window.addEventListener("scroll", this.handleScroll, true); // 监听（绑定）滚轮滚动事件
+  },
+  props: ["afooterHeight"],
+  components: {
+    nxDatePicker
+  }
 };
 </script>
 

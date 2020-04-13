@@ -8,7 +8,6 @@ const store = new Vuex.Store({
     // namespaced: true, //命名空间
     // namespace: 'a/',
     state: { //存储数据的
-
         //用户登录状态
         userLogin: false,
         //用户name

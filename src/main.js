@@ -23,7 +23,9 @@ import {
   CarouselItem,
   Col,
   TimePicker,
-  DatePicker
+  DatePicker,
+  Table,
+  TableColumn
 
 } from 'element-ui';
 
@@ -45,6 +47,8 @@ Vue.use(CarouselItem);
 Vue.use(Col);
 Vue.use(TimePicker);
 Vue.use(DatePicker);
+Vue.use(Table);
+Vue.use(TableColumn);
 
 Vue.prototype.$message = Message;
 

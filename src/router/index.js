@@ -22,22 +22,22 @@ export default new Router({
     {
       path: '/newComponent',
       name: 'newComponent',
-      component: () => import('@/components/NewComponent')
+      component: () => import('@/views/NewComponent')
     },
     {
       path: '/apply',
       name: 'apply',
-      component: () => import('@/components/apply')
+      component: () => import('@/views/apply')
     },
     {
       path: '/choice',
       name: 'choice',
-      component: () => import('@/components/Choice')
+      component: () => import('@/views/Choice')
     },
     {
       path: '/chart',
       name: 'chart',
-      component: () => import('@/components/Chart')
+      component: () => import('@/views/Chart')
     }
   ]
 })
