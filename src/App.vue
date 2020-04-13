@@ -11,6 +11,7 @@
         <Footer />
       </el-footer>
     </el-container>
+    <el-backtop target="#app"></el-backtop>
   </div>
 </template>
 
@@ -23,12 +24,12 @@ export default {
     Header,
     Footer
   },
-  data() {
+  data () {
     return {
       afooterHeight: ""
     };
   },
-  mounted() {
+  mounted () {
     console.log("执行了吗APP", this.$refs.afooter.$el.clientHeight);
     this.afooterHeight = this.$refs.afooter.$el.clientHeight;
   }
@@ -40,7 +41,7 @@ export default {
 .el-container {
   background: #fdfdfd;
   .el-header {
-    background-color: #fdfdfd;;
+    background-color: #fdfdfd;
     color: #333;
     text-align: center;
     line-height: 60px;

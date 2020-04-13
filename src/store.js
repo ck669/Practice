@@ -16,7 +16,6 @@ const store = new Vuex.Store({
         personList: []
     },
     mutations: { //改变state里的值的方法
-
         changeLogin(state, userLogin) {
             state.userLogin = userLogin;
         },
@@ -32,12 +31,12 @@ const store = new Vuex.Store({
         }
     },
     actions: {
-        addsyb(ctx, mynum) {
-            ctx.commit('add', { count: mynum });
+        addsyb( { commit }, mynum) {
+            commit('add', { count: mynum });
         },
-        changeP(ctx, addValue) {
+        changeP({ commit }, addValue) {
             // setTimeout(() => {
-                ctx.commit('changePersonList', addValue);//触发mutations中的changePersonList函数
+                commit('changePersonList', addValue);//触发mutations中的changePersonList函数
             // }, 1000)
 
         }

@@ -25,6 +25,7 @@
 
 <script>
 import Cookies from "js-cookie";
+import { mapMutations } from 'vuex';
 export default {
   data() {
     return {
@@ -53,7 +54,7 @@ export default {
             account: this.userLoginForm.account,
             pwd: this.userLoginForm.pwd
           };
-          console.log(obj);
+          // console.log(obj);
           if (obj.account === 15916916901 && obj.pwd === 123) {
             Cookies.set("userName", "院长", { expires: 7 });
             this.$router.push({ name: "home" });

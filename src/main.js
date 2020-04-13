@@ -25,8 +25,8 @@ import {
   TimePicker,
   DatePicker,
   Table,
-  TableColumn
-
+  TableColumn,
+  Backtop
 } from 'element-ui';
 
 Vue.use(Button);
@@ -49,6 +49,7 @@ Vue.use(TimePicker);
 Vue.use(DatePicker);
 Vue.use(Table);
 Vue.use(TableColumn);
+Vue.use(Backtop);
 
 Vue.prototype.$message = Message;
 

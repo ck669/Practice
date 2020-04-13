@@ -12,9 +12,9 @@
       >{{item.title}}</router-link>
     </div>
     <div class="header-right">
-      <el-button type="primary" @click="toLogin" v-if="isLogin == false">登录</el-button>
-      <span v-else>{{isUserName}}</span>
-      <el-button type="primary" @click="loginOut" v-if="isLogin == true">退出</el-button>
+      <el-button type="primary" @click="toLogin" v-if="userLogin == false">登录</el-button>
+      <span v-else>{{userName}}</span>
+      <el-button type="primary" @click="loginOut" v-if="userLogin == true">退出</el-button>
     </div>
   </div>
 </template>
@@ -22,40 +22,30 @@
 <script>
 import navList from "@/forData/navList";
 import Cookies from "js-cookie";
+import { mapState, mapMutations } from 'vuex';
 
 export default {
-  data() {
+  data () {
     return {
       navList
     };
   },
-  created() {
-    this.$store.state.userLogin =
-      Cookies.get("userName") == undefined ? false : true;
-    let userName = Cookies.get("userName");
-    this.$store.state.userName = userName;
+  created () {
+    this.changeLogin(Cookies.get("userName") == undefined ? false : true);
+    this.setUserName(Cookies.get("userName"));
   },
-  // watch: {
-  //   $route(to, from) {
-  //     console.log(this.$route.name);
-  //   }
-  // },
   computed: {
-    isLogin() {
-      return this.$store.state.userLogin;
-    },
-    isUserName() {
-      return this.$store.state.userName;
-    }
+    ...mapState(['userLogin', 'userName'])
   },
   methods: {
-    toHome() {
+    ...mapMutations(['changeLogin', 'setUserName']),
+    toHome () {
       this.$router.push({ name: "home" });
     },
-    toLogin() {
+    toLogin () {
       this.$router.push({ name: "login" });
     },
-    loginOut() {
+    loginOut () {
       this.$store.commit("changeLogin", false);
       Cookies.remove("userName");
     }
@@ -96,7 +86,7 @@ export default {
       height: 100%;
       display: block;
       padding: 0 32px;
-      margin: 0 .5px;
+      margin: 0 0.5px;
     }
     a:hover {
       color: snow;

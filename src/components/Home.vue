@@ -6,8 +6,8 @@
         <img :src="item.src" :alt="item.title" />
       </el-carousel-item>
     </el-carousel>
-    <br>
-    <br>
+    <br />
+    <br />
     <el-row>
       <el-form :model="timeForm" label-width="100px">
         <el-col :span="8">
@@ -55,7 +55,7 @@ import Cookies from "js-cookie";
 import nxDatePicker from '@/components/nx-date-picker';
 export default {
   name: "HelloWorld",
-  data() {
+  data () {
     return {
       imgList: [
         {
@@ -73,14 +73,14 @@ export default {
       ],
       myNum: toNum,
       username: "",
-      timeForm:{
+      timeForm: {
         startDates: '',
         lastDates: '',
       }
     };
   },
   methods: {
-    handleScroll() {
+    handleScroll () {
       if (this.$refs.footerFixed) {
         var scrollTop =
           document.documentElement.scrollTop ||
@@ -103,17 +103,17 @@ export default {
         }
       }
     },
-    changeDate(starts, lasts){
+    changeDate (starts, lasts) {
       this.timeForm.startDates = starts;
       this.timeForm.lastDates = lasts;
       console.log('父开始时间', this.timeForm.startDates);
       console.log('父结束时间', this.timeForm.lastDates);
     }
   },
-  created() {
+  created () {
     this.username = Cookies.get("userName");
   },
-  mounted() {
+  mounted () {
     // console.log("可视区域", document.documentElement.clientHeight);
     // console.log("页面总高", document.body.scrollHeight);
     this.$refs.footerFixed.style.position = "fixed";
