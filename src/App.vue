@@ -11,7 +11,9 @@
         <Footer />
       </el-footer>
     </el-container>
-    <el-backtop target="#app"></el-backtop>
+    <el-backtop target="#app">
+      <i class="iconfont icon-caret-top"></i>
+    </el-backtop>
   </div>
 </template>
 
