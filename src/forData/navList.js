@@ -19,4 +19,9 @@ export default [
         title: 'Echart图表',
         name: 'chart'
     },
+    {
+        id: 5,
+        title: 'Table表格',
+        name: 'table'
+    },
 ]

@@ -38,6 +38,11 @@ export default new Router({
       path: '/chart',
       name: 'chart',
       component: () => import('@/views/Chart')
+    },
+    {
+      path: '/table',
+      name: 'table',
+      component: () => import('@/views/Table')
     }
   ]
 })
