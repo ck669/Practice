@@ -36,84 +36,97 @@ export default {
   data() {
     return {
       tableData: [{
-          id: '12987122',
+          id: '1',
           name: '王小虎',
           amount1: '234',
           amount2: '3.2',
           amount3: 10
         }, {
-          id: '12987123',
+          id: '2',
           name: '王小虎',
           amount1: '165',
           amount2: '4.43',
-          amount3: 12
+          amount3: 9
         }, {
-          id: '12987124',
+          id: '3',
           name: '王小虎',
           amount1: '324',
           amount2: '1.9',
           amount3: 9
         }, {
-          id: '12987125',
+          id: '4',
           name: '王二虎',
           amount1: '621',
           amount2: '2.2',
-          amount3: 17
+          amount3: 9
         }, {
-          id: '12987126',
+          id: '5',
           name: '王小虎',
           amount1: '539',
           amount2: '4.1',
           amount3: 15
         }, {
-          id: '12987127',
+          id: '6',
           name: '王小虎',
           amount1: '539',
-          amount2: '4.1',
+          amount2: '4.6',
           amount3: 15
         }],
-        spanData: [],
-        pos: 0
+        columnI:[1,2,4], // 传入想合并的列下标
+        mColumn: {}, 
+        current: 0
     };
   },
   created() {
-    this.getSpanData(this.tableData);
+      this.init();
   },
   mounted() {
 
   },
   methods: {
-    getSpanData(data) {
+    init(){
+        const a = Object.keys(this.tableData[0])
+        for (let i = 0; i < this.columnI.length; i++) {
+            this.mColumn[a[this.columnI[i]]] = [];
+        }
+        console.log(this.mColumn)
+        for (let i = 0; i < this.columnI.length; i++) {
+            this.getSpanData(this.tableData, Object.keys(this.mColumn)[i]);
+        }
+    },
+    getSpanData(data, str) {
         // 存放计算好的合并单元格的规则
-        this.spanData = []
+        console.log(str)
+        this.mColumn[str] = [];
         for (var i = 0; i < data.length; i++) {
             if (i === 0) {
-                this.spanData.push(1)
-                this.pos = 0
+                this.mColumn[str].push(1)
+                this.current = 0
             } else {
                 // 判断当前元素与上一个元素是否相同
-                if (data[i].name === data[i - 1].name) {
-                    this.spanData[this.pos] += 1
-                    this.spanData.push(0)
+                if (data[i][str] === data[i - 1][str]) {
+                    this.mColumn[str][this.current] += 1
+                    this.mColumn[str].push(0)
                 } else {
-                    this.spanData.push(1)
-                    this.pos = i
+                    this.mColumn[str].push(1)
+                    this.current = i
                 }
             }
         }
-        console.log(this.spanData);
     },
     objectSpanMethod({ row, column, rowIndex, columnIndex }) {
         // 需要合并的列
-        // [0, 1, 2].includes(columnIndex ), 表示合并前三列
-        if (columnIndex === 1) {
-        const _row = this.spanData[rowIndex]
-        const _col = _row > 0 ? 1 : 0
-            return {
-            rowspan: _row,
-            colspan: _col
+        for (let i = 0; i < this.columnI.length; i++) {
+            if (columnIndex === this.columnI[i]) {
+            const _row = this.mColumn[Object.keys(this.mColumn)[i]][rowIndex]
+            const _col = _row > 0 ? 1 : 0
+                return {
+                rowspan: _row,
+                colspan: _col
+                }
             }
         }
+        
     }
   }
 };
