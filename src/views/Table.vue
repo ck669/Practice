@@ -113,7 +113,7 @@ export default {
         }
     },
     objectSpanMethod({ row, column, rowIndex, columnIndex }) {
-      console.log('执行了嘛')
+      if(this.columnI.length){
         // 需要合并的列
         for (let i = 0; i < this.columnI.length; i++) {
           if(Array.isArray(this.columnI[i].index)){ // 判断columnI的index是不是数组
@@ -138,6 +138,9 @@ export default {
               }
           }
         }
+      }else {
+        return false;
+      }
     }
   }
 };
