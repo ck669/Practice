@@ -42,7 +42,7 @@ export default {
           amount2: '3.2',
           amount3: 10
         }, {
-          id: '2',
+          id: '1',
           name: '王小虎',
           amount1: '165',
           amount2: '4.43',
@@ -72,8 +72,8 @@ export default {
           amount2: '4.6',
           amount3: 15
         }],
-        columnI:[1,2,4], // 传入想合并的列下标
-        mColumn: {}, 
+        columnI:[{index:1, key: 'id' }, {index: 4, key: 'amount3'}], // 传入想合并的列下标
+        mColumn: {},
         current: 0
     };
   },
@@ -85,11 +85,9 @@ export default {
   },
   methods: {
     init(){
-        const a = Object.keys(this.tableData[0])
         for (let i = 0; i < this.columnI.length; i++) {
-            this.mColumn[a[this.columnI[i]]] = [];
+            this.mColumn[this.columnI[i].key] = [];
         }
-        console.log(this.mColumn)
         for (let i = 0; i < this.columnI.length; i++) {
             this.getSpanData(this.tableData, Object.keys(this.mColumn)[i]);
         }
@@ -117,7 +115,7 @@ export default {
     objectSpanMethod({ row, column, rowIndex, columnIndex }) {
         // 需要合并的列
         for (let i = 0; i < this.columnI.length; i++) {
-            if (columnIndex === this.columnI[i]) {
+            if (columnIndex === this.columnI[i].index) {
             const _row = this.mColumn[Object.keys(this.mColumn)[i]][rowIndex]
             const _col = _row > 0 ? 1 : 0
                 return {
@@ -126,7 +124,7 @@ export default {
                 }
             }
         }
-        
+
     }
   }
 };
