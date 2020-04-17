@@ -72,7 +72,7 @@ export default {
           amount2: '4.6',
           amount3: 15
         }],
-        columnI:[{index:1, key: 'id' }, {index: 4, key: 'amount3'}], // 传入想合并的列下标
+        columnI:[{index:[1,3], key: 'name' }, {index: 4, key: 'amount3'}], // 传入判断条件的字段以及想合并的下标
         mColumn: {},
         current: 0
     };
@@ -113,18 +113,31 @@ export default {
         }
     },
     objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+      console.log('执行了嘛')
         // 需要合并的列
         for (let i = 0; i < this.columnI.length; i++) {
-            if (columnIndex === this.columnI[i].index) {
-            const _row = this.mColumn[Object.keys(this.mColumn)[i]][rowIndex]
-            const _col = _row > 0 ? 1 : 0
-                return {
-                rowspan: _row,
-                colspan: _col
-                }
+          if(Array.isArray(this.columnI[i].index)){ // 判断columnI的index是不是数组
+            for (let j = 0; j < this.columnI[i].index.length; j++) {
+              if (columnIndex === this.columnI[i].index[j]) {
+              const _row = this.mColumn[Object.keys(this.mColumn)[i]][rowIndex]
+              const _col = _row > 0 ? 1 : 0
+                  return {
+                  rowspan: _row,
+                  colspan: _col
+                  }
+              }
             }
+          } else { // columnI的index不是数组
+            if (columnIndex === this.columnI[i].index) {
+              const _row = this.mColumn[Object.keys(this.mColumn)[i]][rowIndex]
+              const _col = _row > 0 ? 1 : 0
+                  return {
+                  rowspan: _row,
+                  colspan: _col
+                  }
+              }
+          }
         }
-
     }
   }
 };
